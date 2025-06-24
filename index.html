@@ -22,6 +22,16 @@
         #balance-display {
             margin-top: 20px;
         }
+        .token-requirement {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        #token-check {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -30,6 +40,7 @@
     <div id="balance-display"></div>
     <div id="token-check">
         <button id="check-token">Check $INFOPUNKS Balance</button>
+        <div class="token-requirement">(Minimum of 100,000 tokens)</div>
     </div>
     <script src="app.js"></script>
 </body>
