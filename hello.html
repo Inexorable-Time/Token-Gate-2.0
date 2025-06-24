@@ -1,22 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
+    <script>
+        // Check verification before allowing access
+        if (!sessionStorage.getItem('tokenVerified')) {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <title>Welcome to InfoPunks</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
+            background: #000;
             font-family: Arial, sans-serif;
-            font-size: 2em;
+        }
+        
+        .content {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .links {
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Hello</h1>
+    <div class="content">
+        <h1>Welcome to InfoPunks</h1>
+        <img src="infopunks.jpg" alt="InfoPunks Logo" width="200">
+        <div class="links">
+            <a href="https://discord.gg/infopunks" class="button" target="_blank">Join Discord</a>
+            <a href="https://twitter.com/InfoPunksSol" class="button" target="_blank">Follow Twitter</a>
+            <a href="https://www.tensor.trade/trade/infopunks_solfam" class="button" target="_blank">Buy on Tensor</a>
+        </div>
+    </div>
 </body>
 </html>
