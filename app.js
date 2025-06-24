@@ -35,30 +35,18 @@ class PhantomWalletChecker {
             const resp = await this.provider.connect();
             this.publicKey = resp.publicKey;
             this.connectButton.textContent = 'Connected!';
-            await this.getInfopunksBalance();
+            await this.getBalance();
         } catch (err) {
             console.error('Error connecting to wallet:', err);
         }
     }
 
-    async getInfopunksBalance() {
+    async getBalance() {
         try {
-            const tokenPublicKey = new solanaWeb3.PublicKey(this.TOKEN_ADDRESS);
-            const tokenAccounts = await this.connection.getParsedTokenAccountsByOwner(
-                this.publicKey,
-                { mint: tokenPublicKey }
-            );
-
-            let totalBalance = 0;
-            tokenAccounts.value.forEach((accountInfo) => {
-                const tokenBalance = accountInfo.account.data.parsed.info.tokenAmount;
-                totalBalance += parseInt(tokenBalance.amount) / Math.pow(10, tokenBalance.decimals);
-            });
-
-            this.balanceDisplay.textContent = `$INFOPUNKS Balance: ${totalBalance.toLocaleString()}`;
+            const balance = await this.connection.getBalance(this.publicKey);
+            this.balanceDisplay.textContent = `Balance: ${balance / solanaWeb3.LAMPORTS_PER_SOL} SOL`;
         } catch (err) {
-            console.error('Error getting INFOPUNKS balance:', err);
-            this.balanceDisplay.textContent = 'Error getting $INFOPUNKS balance';
+            console.error('Error getting balance:', err);
         }
     }
 
@@ -110,5 +98,12 @@ class PhantomWalletChecker {
 
 // Initialize the app when the page loads
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if user is verified
+    if (sessionStorage.getItem('tokenVerified') !== 'true') {
+        window.location.href = '/index.html';
+        return;
+    }
+    
+    // Initialize the app only if verified
     new PhantomWalletChecker();
 });
