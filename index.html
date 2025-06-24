@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Wallet Balance Checker</title>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/spl-token@0.3.8/lib/index.iife.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        #balance-display {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phantom Wallet Balance Checker</h1>
+    <button id="connect-button">Connect Phantom Wallet</button>
+    <div id="balance-display"></div>
+    <div id="token-check">
+        <input type="text" id="token-address" placeholder="Enter SPL Token Address">
+        <button id="check-token">Check Token Balance</button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

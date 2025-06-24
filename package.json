@@ -1,0 +1,13 @@
+{
+  "name": "phantom-wallet-checker",
+  "version": "1.0.0",
+  "description": "Phantom Wallet Token Balance Checker",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@solana/web3.js": "latest",
+    "@solana/spl-token": "^0.3.8"
+  }
+}
