@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Verification</title>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/spl-token@0.3.8/lib/index.iife.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        #balance-display {
+            margin-top: 20px;
+        }
+        .token-requirement {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .contract-address {
+            color: #666;
+            font-size: 9px;
+            margin-top: 5px;
+        }
+        #token-check {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Token Verification Required</h1>
+    <div id="token-check">
+        <button id="connect-button">Connect Phantom Wallet</button>
+        <div id="balance-display"></div>
+        <button id="check-token">Verify $INFOPUNKS Balance</button>
+        <div class="token-requirement">(Minimum of 100,000 tokens)</div>
+        <div class="contract-address">CA:5rXSxYoRxASFrALkhHX2PG4D96J8L24c7DB3qEzRpump</div>
+    </div>
+    <script src="verify.js"></script>
+</body>
+</html>
