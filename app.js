@@ -1,9 +1,11 @@
+
 class PhantomWalletChecker {
     constructor() {
         this.connection = new solanaWeb3.Connection(
             'https://mainnet.helius-rpc.com/?api-key=f220866e-b5d1-4140-a2d5-f48fcd1a506a',
             'confirmed'
         );
+        this.TOKEN_ADDRESS = '5rXSxYoRxASFrALkhHX2PG4D96J8L24c7DB3qEzRpump';
         this.TOKEN_THRESHOLD = 100000;
         this.initialize();
     }
@@ -49,15 +51,8 @@ class PhantomWalletChecker {
     }
 
     async checkTokenBalance() {
-        const tokenAddress = document.getElementById('token-address').value;
-
-        if (!tokenAddress) {
-            alert('Please enter the token address');
-            return;
-        }
-
         try {
-            console.log("Checking balance for token:", tokenAddress);
+            console.log("Checking balance for token:", this.TOKEN_ADDRESS);
             console.log("Connected wallet:", this.publicKey?.toString());
             
             if (!this.publicKey) {
@@ -65,7 +60,7 @@ class PhantomWalletChecker {
                 return;
             }
 
-            const tokenPublicKey = new solanaWeb3.PublicKey(tokenAddress);
+            const tokenPublicKey = new solanaWeb3.PublicKey(this.TOKEN_ADDRESS);
             console.log("Getting token accounts...");
             
             const tokenAccounts = await this.connection.getParsedTokenAccountsByOwner(
@@ -92,10 +87,7 @@ class PhantomWalletChecker {
         } catch (err) {
             console.error('Detailed error:', err);
             
-            // More specific error messages
-            if (err.message.includes('Invalid public key input')) {
-                alert('Invalid token address. Please check the address and try again.');
-            } else if (err.message.includes('Network request failed')) {
+            if (err.message.includes('Network request failed')) {
                 alert('Network error. Please check your connection and try again.');
             } else {
                 alert(`Error: ${err.message}`);
