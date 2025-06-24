@@ -1,3 +1,4 @@
+
 class TokenVerifier {
     constructor() {
         this.connection = new solanaWeb3.Connection(
@@ -12,7 +13,8 @@ class TokenVerifier {
     async initialize() {
         // Check if already verified
         if (sessionStorage.getItem('tokenVerified') === 'true') {
-            window.location.href = '/dashboard.html';
+            document.getElementById('verification-section').classList.add('hidden');
+            document.getElementById('content-section').classList.remove('hidden');
             return;
         }
 
@@ -78,8 +80,10 @@ class TokenVerifier {
                 // Store verification in session
                 sessionStorage.setItem('tokenVerified', 'true');
                 sessionStorage.setItem('walletAddress', this.publicKey.toString());
-                // Redirect to main page
-                window.location.href = '/dashboard.html';
+                
+                // Show content section and hide verification section
+                document.getElementById('verification-section').classList.add('hidden');
+                document.getElementById('content-section').classList.remove('hidden');
             } else {
                 alert(`Access denied. You need at least ${this.TOKEN_THRESHOLD.toLocaleString()} tokens to proceed.`);
             }
