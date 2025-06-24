@@ -13,8 +13,7 @@ class TokenVerifier {
     async initialize() {
         // Check if already verified
         if (sessionStorage.getItem('tokenVerified') === 'true') {
-            document.getElementById('verification-section').classList.add('hidden');
-            document.getElementById('content-section').classList.remove('hidden');
+            window.location.href = '/hello.html';
             return;
         }
 
@@ -80,10 +79,8 @@ class TokenVerifier {
                 // Store verification in session
                 sessionStorage.setItem('tokenVerified', 'true');
                 sessionStorage.setItem('walletAddress', this.publicKey.toString());
-                
-                // Show content section and hide verification section
-                document.getElementById('verification-section').classList.add('hidden');
-                document.getElementById('content-section').classList.remove('hidden');
+                // Redirect to hello page
+                window.location.href = '/hello.html';
             } else {
                 alert(`Access denied. You need at least ${this.TOKEN_THRESHOLD.toLocaleString()} tokens to proceed.`);
             }
